@@ -1,0 +1,48 @@
+<div class="card-header">
+    <h1 style="text-align: center;">{{Title}}</h1>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">filter by:</div>
+            <div class="col-md-2"><input type="text"/></div>
+        </div>
+    </div>
+    <br>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" *ngIf="books.length">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Logo</th>
+                        <th>Book Id</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>Publisher</th>
+                        <th>Published Date</th>
+                        <th>Active</th>
+                        <th>Content</th>
+                        <th>Created Date</th>
+                        <th>Modified Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of books">
+                        <td><img [src]='book.url' [style.width.px]='iconWidth' [style.margin.px]='iconMargine'></td>
+                        <td>{{book.bookId}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.category}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.price}}</td>
+                        <td>{{book.publisher}}</td>
+                        <td>{{book.publishedDate}}</td>
+                        <td>{{book.active}}</td>
+                        <td>{{book.content}}</td>
+                        <td>{{book.createdDate}}</td>
+                        <td>{{book.modifiedDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
