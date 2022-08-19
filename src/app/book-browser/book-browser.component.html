@@ -3,7 +3,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-2">filter by:</div>
-            <div class="col-md-2"><input type="text"/></div>
+            <div class="col-md-2"><input type="text" [(ngModel)]='filter'/></div>
+        </div>
+        <div class='row'>
+            <div class='col-md-6'>
+                <h4>Book filter by:{{filter}}</h4>
+            </div>
         </div>
     </div>
     <br>
@@ -12,12 +17,16 @@
             <table class="table" *ngIf="books.length">
                 <thead class="table-dark">
                     <tr>
-                        <th>Logo</th>
+                        <!-- <th>
+                            <button class="btn btn-primary" (click)='hideAndShow()'>
+                                {{showIcon ? "Hide":"Show"}} Logo
+                            </button>
+                        </th> -->
                         <th>Book Id</th>
                         <th>Title</th>
                         <th>Category</th>
-                        <th>Author</th>
-                        <th>Price</th>
+                        <th>Author Id</th>
+                        <th><button (click)='increasePrice()'>+</button>Price <button (click)='decreasePrice()'>-</button></th>
                         <th>Publisher</th>
                         <th>Published Date</th>
                         <th>Active</th>
@@ -28,11 +37,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let book of books">
-                        <td><img [src]='book.url' [style.width.px]='iconWidth' [style.margin.px]='iconMargine'></td>
+                        <!-- <td><img *ngIf='showIcon' [src]='book.url' [style.width.px]='iconWidth' [style.margin.px]='iconMargine'></td> -->
                         <td>{{book.bookId}}</td>
                         <td>{{book.title}}</td>
                         <td>{{book.category}}</td>
-                        <td>{{book.author}}</td>
+                        <td>{{book.authorId}}</td>
                         <td>{{book.price}}</td>
                         <td>{{book.publisher}}</td>
                         <td>{{book.publishedDate}}</td>
@@ -43,6 +52,61 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h1>Book Service</h1>
+    <div class="cards-container">
+        <div class="cards-form">
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input type="text" name="Title" [(ngModel)]="book.title">
+                </div>
+                <div class="form-group">
+                    <label for="">Category</label>
+                    <input type="text" name="Category" [(ngModel)]="book.category">
+                </div>
+                <div class="form-group">
+                    <label for="">AuthorId</label>
+                    <input type="text" name="AuthorId" [(ngModel)]="book.authorId">
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input type="text" name="Price" [(ngModel)]="book.price">
+                </div>
+                <div class="form-group">
+                    <label for="">Publisher</label>
+                    <input type="text" name="Publisher" [(ngModel)]="book.publisher">
+                </div>
+                <div class="form-group">
+                    <label for="">PublishedDate</label>
+                    <input type="text" name="PublishedDate" [(ngModel)]="book.publishedDate">
+                </div>
+                <div class="form-group">
+                    <label for="">Active</label>
+                    <input type="text" name="Active" [(ngModel)]="book.active">
+                </div>
+                <div class="form-group">
+                    <label for="">Content</label>
+                    <input type="text" name="Content" [(ngModel)]="book.content">
+                </div>
+                <div class="form-group">
+                    <label for="">CreatedDate</label>
+                    <input type="text" name="CreatedDate" [(ngModel)]="book.createdDate">
+                </div>
+                <div class="form-group">
+                    <label for="">ModifiedDate</label>
+                    <input type="text" name="ModifiedDate" [(ngModel)]="book.modifiedDate">
+                </div>
+                <div class="form-group">
+                    <button>Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
