@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Books } from '../models/bookmodel';
+import { BookService } from '../service/bookservice';
 
 @Component({
   selector: 'app-book-browser',
@@ -6,45 +8,59 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-browser.component.css']
 })
 export class BookBrowserComponent implements OnInit {
+  book : Books = {
+    title : '',
+    category : '',
+    price : 0,
+    publisher: '',
+    publishedDate: new Date,
+    active: true,
+    content: '',
+    createdDate: new Date,
+    modifiedDate: new Date,
+    authorId: 0
+}
 
   Title = "Book Browser"
   iconMargine = 2;
   iconWidth = 50;
+  showIcon : boolean = false;
+  filter = "book";
+  hike = 0;
+  books : Books[] = [];
 
-  books : any[] = [
-    {
-      "url" : "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/094b67b3c431bc09ef7dc5cc0bd30500d90630bea97f1534b4822fb8a47ea082._RI_V_TTW_.jpg",
-      "bookId" : 1,
-      "title" : "Harry Potter 1",
-      "category" : "Magic",
-      "author" : "J.K. Rowling",
-      "price" : 600,
-      "publisher" : "Moon Publisher",
-      "publishedDate" : "16-08-2002",
-      "active" : "true",
-      "content" : "Welcome to the world of magic",
-      "createdDate" : "16-08-2002",
-      "modifiedDate" : "16-08-2002"
+  constructor(private bookService : BookService) { }
 
-    },
-    {
-      "bookId" : 2,
-      "title" : "Harry Potter 2",
-      "category" : "Magic",
-      "author" : "J.K. Rowling",
-      "price" : 600,
-      "publisher" : "Moon Publisher",
-      "publishedDate" : "16-08-2002",
-      "active" : "true",
-      "content" : "Welcome to the world of magic",
-      "createdDate" : "16-08-2002",
-      "modifiedDate" : "16-08-2002"
+  hideAndShow(): void{
+    this.showIcon = !this.showIcon;
+  }
 
-    }
-]
-  constructor() { }
-
+  increasePrice() : void{
+    this.hike = this.hike+10;
+  }
+  decreasePrice() : void{
+    this.hike = this.hike-10;
+  }
   ngOnInit(): void {
+    this.getAllBooks();
+  }
+
+  getAllBooks()
+  {
+    console.log("i am hit in getBooks component")
+    this.bookService.getAllBooks()
+    .subscribe(
+      response => { 
+        this.books = response;
+        console.log(this.books)
+      });
+    
+  }
+
+    onSubmit(){
+      console.log("i am hit in book browser component")
+      this.bookService.addBook(this.book).subscribe();
+    
   }
 
 }
