@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../models/loginmodel';
 import { LoginService } from '../service/loginservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,12 @@ export class LoginComponent implements OnInit {
     AuthorName :'',
     Password: '',
   }
-  constructor(private loginService : LoginService) { }
+
+  tokenObj : any = {
+    token : ''
+  }
+
+  constructor(private loginService : LoginService,private router : Router) { }
 
   ngOnInit(): void {}
 
@@ -21,7 +27,20 @@ export class LoginComponent implements OnInit {
     console.log("i am hit in login component")
     try
     {
-      this.loginService.loginValidation(this.login).subscribe(response => localStorage.setItem("token",response));
+      this.loginService.loginValidation(this.login).subscribe(response => {this.tokenObj = response 
+         localStorage.setItem('token',this.tokenObj.token)})
+    
+      if(this.tokenObj.token != '')
+      {
+        localStorage.setItem('loggedIn','true')
+        this.router.navigate(['book-operation'],{state:{authorName : this.login.AuthorName}});
+      }
+      else
+      {
+        
+        throw new Error("Please Sign Up");
+      }
+      
     }
     catch(error)
     {

@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { BookOperationComponent } from './book-operation/book-operation.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { LoginComponent } from './login/login.component';
     BookBrowserComponent,
     HomeComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    BookOperationComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
