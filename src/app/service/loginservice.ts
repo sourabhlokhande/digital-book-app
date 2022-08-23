@@ -17,12 +17,11 @@ export class LoginService
     constructor(private http:HttpClient){}
     
     
-    loginValidation(login: Login):Observable<string> {
+    loginValidation(login: Login):Observable<any> {
         // console.log("i am hit in login service")
         // console.log(login)
-        return  this.http.post<string>(this.baseUrl+'/author/validate', login);
-        // console.log(token)
-        // return token;
+        return  this.http.post<any>(this.baseUrl+'/author/validate', login);
+        
     }
 }
 

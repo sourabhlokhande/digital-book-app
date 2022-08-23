@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { Books } from '../models/bookmodel';
+import { Payment } from '../models/paymentmodel';
 import { BookService } from '../service/bookservice';
 
 @Component({
@@ -21,6 +24,12 @@ export class BookBrowserComponent implements OnInit {
     authorId: 0
 }
 
+pay : Payment =
+{
+  email : '',
+  bookId : 0
+}
+
   Title = "Book Browser"
   iconMargine = 2;
   iconWidth = 50;
@@ -29,7 +38,7 @@ export class BookBrowserComponent implements OnInit {
   hike = 0;
   books : Books[] = [];
 
-  constructor(private bookService : BookService) { }
+  constructor(private bookService : BookService,private router : Router) { }
 
   hideAndShow(): void{
     this.showIcon = !this.showIcon;
@@ -57,10 +66,22 @@ export class BookBrowserComponent implements OnInit {
     
   }
 
-    onSubmit(){
-      console.log("i am hit in book browser component")
-      this.bookService.addBook(this.book).subscribe();
-    
+ 
+  bookPurchase(purchaseBookId : any)
+  {
+    this.router.navigate(['payment'],{state:{bookId : purchaseBookId}});
+    console.log(purchaseBookId)
   }
+  
+  filterBook()
+  {
+    console.log(this.book)
+    this.bookService.filterBook(this.book).subscribe(response => { 
+      this.books = response;
+      console.log(this.books)
+    });
+  }
+
+    
 
 }

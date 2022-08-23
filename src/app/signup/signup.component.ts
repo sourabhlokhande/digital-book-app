@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Author } from '../models/authormodel';
 import { AuthorService } from '../service/authorservice';
 
@@ -17,13 +18,23 @@ export class SignupComponent implements OnInit {
     modifiedDate: new Date
 }
 
-  constructor(private authorService: AuthorService) { }
+  constructor(private authorService: AuthorService,private router : Router) { }
 
   ngOnInit(): void {}
 
   onSubmit(){
-    console.log("i am hit in author component")
-    this.authorService.addAuthor(this.author).subscribe();
+    if(this.author.authorName != '')
+    {
+      console.log("i am hit in author component")
+      this.authorService.addAuthor(this.author).subscribe();
+      this.router.navigate(['login']);
+    }
+    else
+    {
+      alert("Signup Failed")
+      console.log("Sign Up Failed")
+    }
+    
   
 }
 

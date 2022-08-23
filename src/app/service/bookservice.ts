@@ -1,6 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { Author } from '../models/authormodel';
 import { Books } from '../models/bookmodel';
 
 @Injectable({
@@ -9,6 +10,8 @@ import { Books } from '../models/bookmodel';
 export class BookService
 {
     
+    
+    
     baseUrl = 'https://localhost:7298'
 
     constructor(private http:HttpClient){}
@@ -16,8 +19,18 @@ export class BookService
     getAllBooks():Observable<Books[]>{
         return this.http.get<Books[]>(this.baseUrl+'/reader/books/getbooks')
     }
+
+    getAuthorBooks(user : Author):Observable<Books[]>{
+        console.log("i am hit in book service")
+        return this.http.post<Books[]>(this.baseUrl+'/reader/books/getauthorbooks',user)
+    }
     
-    token = "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiU291cmFiaCIsIlJvbGUiOiJhdXRob3IiLCJhdWQiOlsiYXBpLmF1dGhvcnNlcnZpY2UuY29tIiwiYXBpLmdhdGV3YXkuY29tIiwiYXBpLmF1dGhzZXJ2aWNlcy5jb20iXSwiZXhwIjoxNjYwOTgwNzMyLCJpc3MiOiJhcGkuYXV0aHNlcnZpY2VzLmNvbSJ9.uldHD4RxHDn6Uv50znU6ZzheFC7xBRn4qxLoAOC-MLk";
+    filterBook(book: Books):Observable<Books[]>{
+        return this.http.post<Books[]>(this.baseUrl+'/reader/books/searchbook',book)
+      }
+    
+    
+    token = localStorage.getItem("token")
     addBook(book: Books):Observable<Books> {
         console.log("i am hit in book service")
         console.log(book)
