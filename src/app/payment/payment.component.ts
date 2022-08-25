@@ -32,7 +32,8 @@ export class PaymentComponent implements OnInit {
       console.log("i am hit in payment component")
       console.log(this.pay)
       this.paymentService.buyBook(this.pay).subscribe();
-      alert("book purchased!")
+      alert("Confirm")
+      this.router.navigate(['book-browser']);
     }
     else
     {

@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { BookOperationComponent } from './book-operation/book-operation.component';
 import { PaymentComponent } from './payment/payment.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PaymentComponent } from './payment/payment.component';
     SignupComponent,
     LoginComponent,
     BookOperationComponent,
-    PaymentComponent
+    PaymentComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
