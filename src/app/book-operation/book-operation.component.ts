@@ -44,6 +44,12 @@ export class BookOperationComponent implements OnInit {
     this.bookForm = !this.bookForm;
   }
 
+  updateForm : boolean = false;
+   showUpdateBook(bookUpdate : Books): void{
+     this.book = bookUpdate;
+    this.updateForm = !this.updateForm;
+  }
+
   ngOnInit(): void {
     this.getAuthorBooks();
   }
@@ -75,5 +81,9 @@ Logout()
   localStorage.removeItem('token');
   this.router.navigate(['home']);
 
+}
+updateBook(book : Books)
+{
+  this.bookService.updateBook(book).subscribe();
 }
 }

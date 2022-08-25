@@ -11,6 +11,7 @@ import { Payment } from '../models/paymentmodel';
 export class PaymentService
 {
     
+    
     baseUrl = 'https://localhost:7298'
 
     constructor(private http:HttpClient){}
@@ -20,6 +21,13 @@ export class PaymentService
         console.log("i am hit in author service")
         console.log(payment)
         return this.http.post<Payment[]>(this.baseUrl+'/reader/books/buybook', payment);
+        //return this.http.post<Payment[]>('https://readerapiservice.azurewebsites.net/api/Reader/BuyBook',payment);
+        //return this.http.post<Payment[]>('https://paymentgatewayservicedigibook.azurewebsites.net/api/PaymentGate',payment);
+        
     }
+
+    getPurchasedBook(pay: Payment) :Observable<Payment[]>{
+        return this.http.post<Payment[]>(this.baseUrl+'/reader/books/getpurchasedbook', pay);
+      }
 }
 
