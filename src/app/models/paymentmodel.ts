@@ -1,5 +1,6 @@
 export interface Payment
 {
 email : string,
-bookId: number
+bookId: number,
+paymentId: number
 }

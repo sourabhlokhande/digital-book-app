@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Author } from '../models/authormodel';
 import { Books } from '../models/bookmodel';
+import { Payment } from '../models/paymentmodel';
 
 @Injectable({
     providedIn : 'root'
 })
 export class BookService
 {
+    
     
     
     
@@ -53,6 +55,11 @@ export class BookService
               'Authorization': 'Bearer ' + this.token,
                'Content-Type': 'application/json'
                   })});
+      }
+
+      getBookDetails(reciept: Payment):Observable<Books[]> {
+          console.log(reciept)
+        return this.http.post<Books[]>(this.baseUrl+'/reader/books/getbookdetails',reciept)
       }
 }
 

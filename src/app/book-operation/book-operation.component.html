@@ -1,6 +1,8 @@
 <h1>Welcome! {{user.authorName}}</h1>
 
-
+<div>
+    <button class="btn btn-primary" (click)="showAddBook()">Add Books</button>
+</div><br>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table" *ngIf="books.length">
@@ -45,9 +47,9 @@
             </table>
         </div>
     </div>
-    <div>
+    <!-- <div>
         <button class="btn btn-primary" (click)="showAddBook()">Add Books</button>
-    </div>
+    </div> -->
     <div>
         <button class="btn btn-primary" (click)="Logout()">Logout</button>
     </div>
