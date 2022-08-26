@@ -27,7 +27,8 @@ export class BookBrowserComponent implements OnInit {
 pay : Payment =
 {
   email : '',
-  bookId : 0
+  bookId : 0,
+  paymentId : 0
 }
 
   Title = "Book Browser"

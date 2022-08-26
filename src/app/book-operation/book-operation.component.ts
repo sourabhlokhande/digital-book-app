@@ -73,7 +73,7 @@ export class BookOperationComponent implements OnInit {
       alert("book has been added!")
     }
     
-  
+    this.getAuthorBooks();
 }
 Logout()
 {

@@ -13,7 +13,8 @@ export class PaymentComponent implements OnInit {
   pay : Payment =
 {
   email : '',
-  bookId : 0
+  bookId : 0,
+  paymentId : 0
 }
   
   constructor(private paymentService:PaymentService,private router : Router) { 
@@ -42,4 +43,5 @@ export class PaymentComponent implements OnInit {
     
 
 }
+
 }
