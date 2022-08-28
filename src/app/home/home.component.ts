@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Books } from '../models/bookmodel';
 import { BookService } from '../service/bookservice';
 
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   bookContent : any= '';
   currentReadingBook : any ='';
-  constructor(private bookService : BookService) { 
+  constructor(private bookService : BookService,private router : Router) { 
     localStorage.setItem('loggedIn','false')
   }
 
@@ -34,13 +35,14 @@ export class HomeComponent implements OnInit {
     
   }
 
-  readBook(content : any,title : any)
+  readBook(bookId : any,content : any,title : any)
   {
-    console.log(content)
-    this.currentReadingBook = title;
-    this.bookContent = content;
-    this.showTable = false;
-    this.showContent = true;
+    // console.log(content)
+    // this.currentReadingBook = title;
+    // this.bookContent = content;
+    // this.showTable = false;
+    // this.showContent = true;
+    this.router.navigate(['readbook'],{state:{bId : bookId,contnt : content,ttl : title}});
   }
 
 }

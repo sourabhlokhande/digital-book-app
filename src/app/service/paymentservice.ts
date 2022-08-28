@@ -12,6 +12,7 @@ export class PaymentService
 {
     
     
+    
     baseUrl = 'https://localhost:7298'
 
     constructor(private http:HttpClient){}
@@ -28,6 +29,10 @@ export class PaymentService
 
     getPurchasedBook(pay: Payment) :Observable<Payment[]>{
         return this.http.post<Payment[]>(this.baseUrl+'/reader/books/getpurchasedbook', pay);
+      }
+
+      readBook(pay: Payment):Observable<boolean> {
+        return this.http.post<boolean>(this.baseUrl+'/reader/books/checkreader', pay);
       }
 }
 
