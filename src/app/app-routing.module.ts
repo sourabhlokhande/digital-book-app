@@ -6,6 +6,7 @@ import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ReadbookComponent } from './readbook/readbook.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
     {path : 'signup', component:SignupComponent},
     {path : 'login', component:LoginComponent},
     {path: 'payment',component:PaymentComponent},
-    {path: 'history',component:HistoryComponent}
+    {path: 'history',component:HistoryComponent},
+    {path: 'readbook',component:ReadbookComponent}
 ];
 
 @NgModule({

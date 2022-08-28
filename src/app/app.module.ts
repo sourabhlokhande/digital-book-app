@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { BookOperationComponent } from './book-operation/book-operation.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HistoryComponent } from './history/history.component';
+import { ReadbookComponent } from './readbook/readbook.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HistoryComponent } from './history/history.component';
     LoginComponent,
     BookOperationComponent,
     PaymentComponent,
-    HistoryComponent
+    HistoryComponent,
+    ReadbookComponent
   ],
   imports: [
     BrowserModule,
